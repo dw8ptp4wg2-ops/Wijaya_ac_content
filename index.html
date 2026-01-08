@@ -3,233 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WIJAYA AC – Content Engine</title>
+
+<title>Service AC Pamulang | Jasa AC Tangerang Selatan – WIJAYA AC</title>
+<meta name="description" content="Service AC Pamulang & Tangerang Selatan. Cuci AC, perawatan, perbaikan, bongkar pasang AC. Respon cepat via WhatsApp.">
+<meta name="robots" content="index, follow">
+
+<!-- SEO Lokal -->
+<meta name="geo.region" content="ID-BT">
+<meta name="geo.placename" content="Pamulang, Tangerang Selatan">
+<meta name="geo.position" content="-6.3425;106.7383">
+<meta name="ICBM" content="-6.3425,106.7383">
+
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "WIJAYA AC",
+  "telephone": "+628118011436",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pamulang",
+    "addressRegion": "Tangerang Selatan",
+    "addressCountry": "ID"
+  },
+  "areaServed": ["Pamulang","Tangerang Selatan"],
+  "priceRange": "$$",
+  "sameAs": ["https://wa.me/628118011436"]
+}
+</script>
+
+<!-- Google Analytics (GANTI ID NANTI) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
 
 <style>
-body{font-family:Arial,Helvetica,sans-serif;background:#f4f8fb;margin:0;padding:15px;color:#333}
-header{background:#0b5ed7;color:#fff;padding:16px;border-radius:14px}
-header h1{margin:0;font-size:22px}
-header p{margin:4px 0 0;font-size:14px;opacity:.9}
-.card{background:#fff;border-radius:14px;padding:15px;margin-top:15px}
-.badge{background:#0b5ed7;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px}
-textarea{width:100%;min-height:100px;border-radius:10px;border:1px solid #ccc;padding:10px;font-size:14px}
-button{width:100%;padding:12px;border:none;border-radius:12px;background:#0b5ed7;color:#fff;font-size:15px;margin-top:10px}
-select,input{width:100%;padding:10px;border-radius:10px;border:1px solid #ccc;margin-top:6px}
-canvas{width:100%;border-radius:14px;background:#eee}
-.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.asset-grid img{width:100%;border-radius:10px;border:1px solid #ccc}
-.footer{text-align:center;font-size:12px;color:#777;margin:20px 0}
+:root{
+  --blue:#0b5ed7;
+  --blue-soft:#eef4ff;
+  --yellow:#ffc107;
+  --dark:#1f2937;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--dark);
+  background:#fff;
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+.container{max-width:1100px;margin:auto;padding:24px}
+section{padding:40px 0}
+h1,h2,h3{line-height:1.25}
+h1{font-size:38px}
+h2{font-size:28px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--yellow);
+  color:#000;
+  padding:14px 22px;
+  border-radius:14px;
+  font-weight:700;
+}
+.btn:hover{filter:brightness(.95)}
+.badge{
+  display:inline-block;
+  background:var(--blue-soft);
+  color:var(--blue);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  border:1px solid #eef2ff;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+.icon{
+  width:44px;height:44px;
+  border-radius:12px;
+  background:var(--blue-soft);
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  font-weight:700;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(180deg,#ffffff 0%,#f5f9ff 100%);
+}
+.hero-wrap{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+}
+
+/* TRUST */
+.trust{background:var(--blue-soft)}
+.trust ul{padding-left:18px}
+.trust li{margin:6px 0}
+
+/* GALLERY */
+.gallery img{
+  width:100%;
+  border-radius:14px;
+  object-fit:cover;
+  height:140px;
+}
+
+/* CTA */
+.cta{
+  background:var(--blue);
+  color:#fff;
+  text-align:center;
+}
+
+/* MAPS */
+.maps iframe{
+  width:100%;
+  height:360px;
+  border:0;
+  border-radius:18px;
+}
+
+/* FOOTER */
+footer{
+  background:#0b1220;
+  color:#cbd5e1;
+}
+footer small{color:#94a3b8}
+
+/* FLOATING WA */
+.wa-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:#25D366;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+  z-index:9999;
+}
+.wa-float:hover{filter:brightness(.95)}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  h1{font-size:48px}
+  .hero-wrap{grid-template-columns:1.1fr .9fr}
+  .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>WIJAYA AC</h1>
-  <p>Agency Content Manager – Offline</p>
-</header>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-wrap">
+    <div>
+      <span class="badge">WIJAYA AC • Pamulang & Tangsel</span>
+      <h1>AC Kurang Dingin?<br>Tenang, Kami Beresin.</h1>
+      <p>
+        <strong>WIJAYA AC</strong> siap bantu service, perawatan,
+        dan bongkar pasang AC rumah maupun kantor.
+        Kerja rapi, respon cepat, harga jelas.
+      </p>
 
-<div class="card">
-  <span class="badge" id="tanggal"></span>
-  <h3 id="tema"></h3>
-</div>
+      <a class="btn"
+         href="https://wa.me/628118011436?text=Hallo%20admin%20Wijaya%20AC,%20saya%20telah%20mengunjungi%20halaman%20website%20anda.%20Bisa%20beritahu%20layanan%20anda%20secara%20lengkap?%0A%0ATerima%20kasih."
+         target="_blank"
+         onclick="gtag('event','click',{'event_category':'CTA','event_label':'WhatsApp'});">
+         💬 Chat WhatsApp Sekarang
+      </a>
+    </div>
 
-<!-- CAPTION -->
-<div class="card">
-  <h4>📝 Caption</h4>
-  <textarea id="caption"></textarea>
-  <button onclick="copyText('caption')">Copy Caption</button>
-</div>
+    <div class="card">
+      <h3>Kenapa pilih kami?</h3>
+      <ul>
+        <li>Teknisi berpengalaman</li>
+        <li>Pengerjaan rapi & aman</li>
+        <li>Harga transparan</li>
+        <li>After service siap bantu</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<!-- HASHTAG -->
-<div class="card">
-  <h4>#️⃣ Hashtag</h4>
-  <textarea id="hashtag"></textarea>
-  <button onclick="copyText('hashtag')">Copy Hashtag</button>
-</div>
+<!-- SEO LOCAL -->
+<section>
+  <div class="container">
+    <h2>Service AC Pamulang – Cepat & Terpercaya</h2>
+    <p>
+      <strong>WIJAYA AC</strong> melayani <strong>service AC Pamulang</strong>
+      untuk rumah dan kantor. Mulai dari cuci AC, perawatan rutin,
+      perbaikan AC bocor, hingga bongkar pasang AC.
+    </p>
+  </div>
+</section>
 
-<!-- ASSET MANAGER -->
-<div class="card">
-  <h4>📂 Asset Manager (Offline)</h4>
-  <input type="file" accept="image/*" onchange="uploadAsset(event)">
-  <select id="assetCategory">
-    <option value="ac">Icon AC</option>
-    <option value="technician">Teknisi</option>
-    <option value="general">Umum / Default</option>
-  </select>
-  <div class="asset-grid" id="assetPreview"></div>
-</div>
+<!-- SERVICES -->
+<section>
+  <div class="container">
+    <h2>Layanan Kami</h2>
+    <div class="grid cols-4">
+      <div class="card"><div class="icon">❄️</div><h3>Service AC</h3></div>
+      <div class="card"><div class="icon">🔧</div><h3>Perawatan</h3></div>
+      <div class="card"><div class="icon">🧰</div><h3>Bongkar Pasang</h3></div>
+      <div class="card"><div class="icon">🏢</div><h3>Rumah & Kantor</h3></div>
+    </div>
+  </div>
+</section>
 
-<!-- DESIGN -->
-<div class="card">
-  <h4>🎨 Auto Design</h4>
-  <canvas id="designCanvas" width="1080" height="1080"></canvas>
-  <button onclick="generateDesign()">Generate Gambar</button>
-  <button onclick="downloadDesign()">Download PNG</button>
-</div>
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="container">
+    <h2>Aktivitas Teknisi</h2>
+    <div class="grid cols-4">
+      <img src="images/teknisi-1.png" alt="Teknisi service AC Pamulang">
+      <img src="images/teknisi-2.png" alt="Perawatan AC rumah">
+      <img src="images/service-ac.png" alt="Service AC Tangerang Selatan">
+      <img src="images/galeri-1.png" alt="Jasa AC profesional">
+    </div>
+  </div>
+</section>
 
-<div class="footer">
-  © WIJAYA AC – Content Engine
-</div>
+<!-- MAPS -->
+<section class="maps">
+  <div class="container">
+    <h2>Area Layanan Kami</h2>
+    <iframe
+      src="https://www.google.com/maps?q=Pamulang,Tangerang%20Selatan&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Butuh Service atau Perawatan AC?</h2>
+    <p>Klik tombol di bawah untuk chat langsung dengan tim kami.</p>
+    <a class="btn"
+       href="https://wa.me/628118011436?text=Hallo%20admin%20Wijaya%20AC,%20saya%20telah%20mengunjungi%20halaman%20website%20anda.%20Bisa%20beritahu%20layanan%20anda%20secara%20lengkap?%0A%0ATerima%20kasih."
+       target="_blank">
+       💬 Chat WhatsApp WIJAYA AC
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <strong>WIJAYA AC</strong><br>
+    Pamulang • Tangerang Selatan<br><br>
+    <small>© <span id="year"></span> WIJAYA AC. All rights reserved.</small>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/628118011436?text=Hallo%20admin%20Wijaya%20AC,%20saya%20telah%20mengunjungi%20halaman%20website%20anda.%20Bisa%20beritahu%20layanan%20anda%20secara%20lengkap?%0A%0ATerima%20kasih."
+   target="_blank"
+   class="wa-float"
+   aria-label="Chat WhatsApp WIJAYA AC">
+   💬
+</a>
 
 <script>
-// ===== DATE =====
-const today=new Date();
-const dd=String(today.getDate()).padStart(2,'0');
-const mm=String(today.getMonth()+1).padStart(2,'0');
-const yyyy=today.getFullYear();
-document.getElementById("tanggal").innerText=`${dd}/${mm}/${yyyy}`;
-
-// ===== THEME =====
-const temaList=[
- "Tips Agar AC Lebih Awet & Hemat Listrik",
- "AC Cepat Rusak? Ini Penyebabnya",
- "Kesalahan Umum Pemilik AC di Rumah",
- "AC Kurang Dingin? Jangan Abaikan Ini",
- "Pentingnya Perawatan AC Secara Rutin"
-];
-const tema=temaList[Math.floor(Math.random()*temaList.length)];
-document.getElementById("tema").innerText=tema;
-
-// ===== CAPTION & HASHTAG =====
-document.getElementById("caption").value=
-`❄️ ${tema}
-
-AC yang dirawat dengan baik akan lebih awet, dingin, dan tidak boros listrik.
-Pastikan perawatan AC dilakukan oleh teknisi berpengalaman.
-
-📞 Butuh perawatan atau perbaikan AC?
-Hubungi kami di 0811-8011-436
-WIJAYA AC`;
-
-document.getElementById("hashtag").value=
-"#wijayaac #serviceac #acrumah #jasaac #tipsac #actangerang #acpamulang";
-
-// ===== COPY =====
-function copyText(id){
- const el=document.getElementById(id);
- el.select();
- document.execCommand("copy");
- alert("Berhasil disalin!");
-}
-
-// ===== ASSET STORAGE =====
-const STORAGE_KEY="wijaya_assets";
-let assets=JSON.parse(localStorage.getItem(STORAGE_KEY))||{ac:[],technician:[],general:[]};
-
-function uploadAsset(e){
- const file=e.target.files[0];
- if(!file)return;
- const reader=new FileReader();
- reader.onload=function(){
-  const cat=document.getElementById("assetCategory").value;
-  assets[cat].push(reader.result);
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(assets));
-  renderAssets();
- };
- reader.readAsDataURL(file);
-}
-
-function renderAssets(){
- const grid=document.getElementById("assetPreview");
- grid.innerHTML="";
- Object.values(assets).flat().forEach(img=>{
-  const i=document.createElement("img");
-  i.src=img;
-  grid.appendChild(i);
- });
-}
-renderAssets();
-
-// ===== PICK ASSET =====
-function pickAsset(){
- const t=tema.toLowerCase();
- if(t.includes("service")||t.includes("perawatan")) return randomAsset("technician");
- if(t.includes("tips")||t.includes("penyebab")) return randomAsset("ac");
- return randomAsset("general")||randomAsset("ac");
-}
-function randomAsset(cat){
- const arr=assets[cat];
- if(!arr||arr.length===0)return null;
- return arr[Math.floor(Math.random()*arr.length)];
-}
-
-// ===== DESIGN =====
-function generateDesign(){
- const c=document.getElementById("designCanvas");
- const ctx=c.getContext("2d");
- ctx.clearRect(0,0,c.width,c.height);
-
- // BG
- ctx.fillStyle="#fff";
- ctx.fillRect(0,0,c.width,c.height);
-
- // HEADER
- ctx.fillStyle="#0b5ed7";
- ctx.fillRect(0,0,c.width,180);
- ctx.fillStyle="#fff";
- ctx.font="bold 42px Arial";
- ctx.fillText("WIJAYA AC • Solusi AC Terpercaya",60,110);
-
- // TITLE
- ctx.fillStyle="#0b5ed7";
- ctx.font="bold 72px Arial";
- wrapText(ctx,tema,60,320,960,84);
-
- // SUB
- ctx.fillStyle="#333";
- ctx.font="36px Arial";
- ctx.fillText("Tips & Edukasi Perawatan AC Rumah",60,520);
-
- // IMAGE
- const imgSrc=pickAsset();
- if(imgSrc){
-  const img=new Image();
-  img.onload=function(){
-    ctx.drawImage(img,60,600,260,200);
-    drawCTA(ctx,c);
-  };
-  img.src=imgSrc;
- } else {
-  drawCTA(ctx,c);
- }
-}
-
-function drawCTA(ctx,c){
- ctx.fillStyle="#f4f8fb";
- ctx.fillRect(0,820,c.width,260);
- ctx.fillStyle="#0b5ed7";
- ctx.font="bold 42px Arial";
- ctx.fillText("Butuh perawatan atau perbaikan AC?",60,900);
- ctx.font="bold 48px Arial";
- ctx.fillText("Hubungi 0811-8011-436",60,970);
-}
-
-function wrapText(ctx,text,x,y,max,line){
- const words=text.split(" ");
- let l="";
- for(let i=0;i<words.length;i++){
-  const test=l+words[i]+" ";
-  if(ctx.measureText(test).width>max&&i>0){
-    ctx.fillText(l,x,y);
-    l=words[i]+" ";
-    y+=line;
-  } else l=test;
- }
- ctx.fillText(l,x,y);
-}
-
-// ===== DOWNLOAD =====
-function downloadDesign(){
- const canvas=document.getElementById("designCanvas");
- const link=document.createElement("a");
- link.download="wijaya-ac-design.png";
- link.href=canvas.toDataURL("image/png");
- link.click();
-}
-
-// AUTO LOAD
-setTimeout(generateDesign,500);
+document.getElementById("year").innerText=new Date().getFullYear();
 </script>
 
 </body>
