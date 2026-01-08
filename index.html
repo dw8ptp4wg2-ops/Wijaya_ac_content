@@ -1,10 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>WIJAYA AC</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIJAYA AC – Content Manager</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f8fb;
+  margin: 0;
+  padding: 15px;
+  color: #333;
+}
+header {
+  background: #0b5ed7;
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+}
+h1 { margin: 0; font-size: 20px; }
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+}
+.badge {
+  display: inline-block;
+  background: #0b5ed7;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #0b5ed7;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+}
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
-  <h1>BERHASIL 🎉</h1>
-  <p>GitHub Pages sudah aktif</p>
+
+<header>
+  <h1>WIJAYA AC</h1>
+  <div>Agency Content Manager (Offline)</div>
+</header>
+
+<div class="card">
+  <span class="badge" id="tanggal"></span>
+  <span class="badge" id="hariBesar"></span>
+  <h3 id="tema"></h3>
+  <p><strong>Jenis Konten:</strong> <span id="jenis"></span></p>
+</div>
+
+<div class="card">
+  <h4>Caption Siap Posting</h4>
+  <textarea id="caption"></textarea>
+  <button onclick="copyText('caption')">Copy Caption</button>
+</div>
+
+<div class="card">
+  <h4>Hashtag</h4>
+  <textarea id="hashtag"></textarea>
+  <button onclick="copyText('hashtag')">Copy Hashtag</button>
+</div>
+
+<div class="footer">
+  © WIJAYA AC – Content Engine
+</div>
+
+<script>
+// Hari besar Indonesia (sample awal)
+const hariBesar = {
+  "01-01": "Tahun Baru",
+  "14-02": "Valentine",
+  "01-05": "Hari Buruh",
+  "17-08": "Hari Kemerdekaan"
+};
+
+// Tema konten jasa AC
+const konten = {
+  edukasi: [
+    "Kesalahan umum pengguna AC di rumah",
+    "Tips agar AC lebih dingin dan hemat listrik",
+    "Penyebab AC cepat rusak"
+  ],
+  authority: [
+    "Proses standar service AC oleh teknisi profesional",
+    "Behind the scene teknisi WIJAYA AC",
+    "Cara teknisi mengecek AC dengan benar"
+  ],
+  promo: [
+    "Promo service AC hari ini",
+    "Bongkar pasang AC aman & rapi",
+    "Gratis pengecekan AC wilayah sekitar"
+  ]
+};
+
+// Hashtag
+const hashtags = [
+  "#serviceac",
+  "#wijayaac",
+  "#acrumah",
+  "#jasaac",
+  "#tipsac",
+  "#actangerang",
+  "#acpamulang"
+];
+
+// Init
+const today = new Date();
+const dd = String(today.getDate()).padStart(2,'0');
+const mm = String(today.getMonth()+1).padStart(2,'0');
+const yyyy = today.getFullYear();
+const key = `${dd}-${mm}`;
+
+document.getElementById("tanggal").innerText = `${dd}/${mm}/${yyyy}`;
+
+let jenisKonten = "edukasi";
+if (dd <= 5) jenisKonten = "promo";
+if (hariBesar[key]) jenisKonten = "authority";
+
+const tema = konten[jenisKonten][Math.floor(Math.random()*konten[jenisKonten].length)];
+
+document.getElementById("hariBesar").innerText = hariBesar[key] || "Hari Biasa";
+document.getElementById("tema").innerText = tema;
+document.getElementById("jenis").innerText = jenisKonten.toUpperCase();
+
+// Caption
+document.getElementById("caption").value =
+`❄️ ${tema}
+
+AC yang terawat bikin ruangan lebih nyaman dan hemat listrik.
+Percayakan perawatan AC rumah & kantor kamu ke teknisi berpengalaman.
+
+📞 Telepon & WhatsApp
+📍 WIJAYA AC
+
+#WijayaAC`;
+
+// Hashtag
+document.getElementById("hashtag").value = hashtags.join(" ");
+
+function copyText(id) {
+  const text = document.getElementById(id);
+  text.select();
+  document.execCommand("copy");
+  alert("Berhasil disalin!");
+}
+</script>
+
 </body>
 </html>
