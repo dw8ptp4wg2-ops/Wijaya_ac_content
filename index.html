@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WIJAYA AC – Content Manager</title>
+
 <style>
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f4f8fb;
   margin: 0;
   padding: 15px;
@@ -15,13 +16,21 @@ body {
 header {
   background: #0b5ed7;
   color: #fff;
-  padding: 15px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 14px;
 }
-h1 { margin: 0; font-size: 20px; }
+header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  opacity: .9;
+}
 .card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 15px;
   margin-top: 15px;
 }
@@ -29,32 +38,39 @@ h1 { margin: 0; font-size: 20px; }
   display: inline-block;
   background: #0b5ed7;
   color: #fff;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
+  margin-right: 6px;
+}
+textarea {
+  width: 100%;
+  min-height: 110px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
 }
 button {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #0b5ed7;
-  color: white;
+  color: #fff;
   font-size: 15px;
   margin-top: 10px;
 }
-textarea {
+canvas {
   width: 100%;
-  min-height: 120px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 10px;
+  border-radius: 14px;
+  background: #eee;
 }
 .footer {
   text-align: center;
   font-size: 12px;
   color: #777;
-  margin-top: 20px;
+  margin: 20px 0 10px;
 }
 </style>
 </head>
@@ -63,14 +79,13 @@ textarea {
 
 <header>
   <h1>WIJAYA AC</h1>
-  <div>Agency Content Manager (Offline)</div>
+  <p>Agency Content Manager – Offline</p>
 </header>
 
 <div class="card">
   <span class="badge" id="tanggal"></span>
   <span class="badge" id="hariBesar"></span>
   <h3 id="tema"></h3>
-  <p><strong>Jenis Konten:</strong> <span id="jenis"></span></p>
 </div>
 
 <div class="card">
@@ -85,12 +100,19 @@ textarea {
   <button onclick="copyText('hashtag')">Copy Hashtag</button>
 </div>
 
+<div class="card">
+  <h4>Auto Design Gambar (Edukasi)</h4>
+  <canvas id="designCanvas" width="1080" height="1080"></canvas>
+  <button onclick="generateDesign()">Generate Gambar</button>
+  <button onclick="downloadDesign()">Download PNG</button>
+</div>
+
 <div class="footer">
   © WIJAYA AC – Content Engine
 </div>
 
 <script>
-// Hari besar Indonesia (sample awal)
+// ================= DATA =================
 const hariBesar = {
   "01-01": "Tahun Baru",
   "14-02": "Valentine",
@@ -98,29 +120,17 @@ const hariBesar = {
   "17-08": "Hari Kemerdekaan"
 };
 
-// Tema konten jasa AC
-const konten = {
-  edukasi: [
-    "Kesalahan umum pengguna AC di rumah",
-    "Tips agar AC lebih dingin dan hemat listrik",
-    "Penyebab AC cepat rusak"
-  ],
-  authority: [
-    "Proses standar service AC oleh teknisi profesional",
-    "Behind the scene teknisi WIJAYA AC",
-    "Cara teknisi mengecek AC dengan benar"
-  ],
-  promo: [
-    "Promo service AC hari ini",
-    "Bongkar pasang AC aman & rapi",
-    "Gratis pengecekan AC wilayah sekitar"
-  ]
-};
+const temaKonten = [
+  "AC Cepat Rusak? Ini Penyebabnya",
+  "Kenapa AC Kurang Dingin Padahal Nyala",
+  "Kesalahan Umum Pemilik AC di Rumah",
+  "Tips Agar AC Lebih Awet & Hemat Listrik",
+  "Penyebab AC Bocor yang Sering Diabaikan"
+];
 
-// Hashtag
-const hashtags = [
-  "#serviceac",
+const hashtagList = [
   "#wijayaac",
+  "#serviceac",
   "#acrumah",
   "#jasaac",
   "#tipsac",
@@ -128,7 +138,7 @@ const hashtags = [
   "#acpamulang"
 ];
 
-// Init
+// ================= INIT =================
 const today = new Date();
 const dd = String(today.getDate()).padStart(2,'0');
 const mm = String(today.getMonth()+1).padStart(2,'0');
@@ -136,38 +146,97 @@ const yyyy = today.getFullYear();
 const key = `${dd}-${mm}`;
 
 document.getElementById("tanggal").innerText = `${dd}/${mm}/${yyyy}`;
+document.getElementById("hariBesar").innerText = hariBesar[key] || "Konten Edukasi";
 
-let jenisKonten = "edukasi";
-if (dd <= 5) jenisKonten = "promo";
-if (hariBesar[key]) jenisKonten = "authority";
-
-const tema = konten[jenisKonten][Math.floor(Math.random()*konten[jenisKonten].length)];
-
-document.getElementById("hariBesar").innerText = hariBesar[key] || "Hari Biasa";
+const tema = temaKonten[Math.floor(Math.random()*temaKonten.length)];
 document.getElementById("tema").innerText = tema;
-document.getElementById("jenis").innerText = jenisKonten.toUpperCase();
 
-// Caption
+// CAPTION
 document.getElementById("caption").value =
 `❄️ ${tema}
 
-AC yang terawat bikin ruangan lebih nyaman dan hemat listrik.
-Percayakan perawatan AC rumah & kantor kamu ke teknisi berpengalaman.
+AC yang dirawat dengan benar akan lebih awet, dingin, dan tidak boros listrik.
+Pastikan perawatan AC dilakukan oleh teknisi berpengalaman.
 
-📞 Telepon & WhatsApp
-📍 WIJAYA AC
+📞 Butuh perawatan atau perbaikan AC?
+Hubungi kami di 0811-8011-436
+WIJAYA AC`;
 
-#WijayaAC`;
+// HASHTAG
+document.getElementById("hashtag").value = hashtagList.join(" ");
 
-// Hashtag
-document.getElementById("hashtag").value = hashtags.join(" ");
-
+// ================= COPY =================
 function copyText(id) {
-  const text = document.getElementById(id);
-  text.select();
+  const el = document.getElementById(id);
+  el.select();
   document.execCommand("copy");
   alert("Berhasil disalin!");
 }
+
+// ================= DESIGN =================
+function generateDesign() {
+  const canvas = document.getElementById("designCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Background
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // Header
+  ctx.fillStyle = "#0b5ed7";
+  ctx.fillRect(0,0,canvas.width,180);
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 42px Arial";
+  ctx.fillText("WIJAYA AC • Solusi AC Terpercaya",60,110);
+
+  // Title
+  ctx.fillStyle = "#0b5ed7";
+  ctx.font = "bold 76px Arial";
+  wrapText(ctx, tema, 60, 320, 960, 88);
+
+  // Sub
+  ctx.fillStyle = "#333";
+  ctx.font = "36px Arial";
+  ctx.fillText("Tips & Edukasi Perawatan AC Rumah",60,520);
+
+  // Icon
+  ctx.font = "140px Arial";
+  ctx.fillText("❄️",60,680);
+
+  // CTA
+  ctx.fillStyle = "#f4f8fb";
+  ctx.fillRect(0,820,canvas.width,260);
+  ctx.fillStyle = "#0b5ed7";
+  ctx.font = "bold 42px Arial";
+  ctx.fillText("Butuh perawatan atau perbaikan AC?",60,900);
+  ctx.font = "bold 48px Arial";
+  ctx.fillText("Hubungi kami di 0811-8011-436",60,970);
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+  for (let i=0;i<words.length;i++){
+    const test = line + words[i] + " ";
+    if (ctx.measureText(test).width > maxWidth && i>0){
+      ctx.fillText(line,x,y);
+      line = words[i] + " ";
+      y += lineHeight;
+    } else line = test;
+  }
+  ctx.fillText(line,x,y);
+}
+
+function downloadDesign(){
+  const link = document.createElement("a");
+  link.download = "wijaya-ac-edukasi.png";
+  link.href = document.getElementById("designCanvas").toDataURL();
+  link.click();
+}
+
+// AUTO LOAD
+setTimeout(generateDesign,500);
 </script>
 
 </body>
